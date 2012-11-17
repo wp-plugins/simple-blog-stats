@@ -66,7 +66,7 @@ Visit the [SBS Homepage](http://perishablepress.com/simple-blog-stats/) for scre
 
 * 2012/10/29 - Initial release.
 * 2012/10/28 - Fine-tuned, tested, tested, etc.
-* 2012/10/27 - Rebuilt previous plugin ([BlogStats PCC](http://perishablepress.com/blogstats-pcc-plugin/) using current/native WP functionality.
+* 2012/10/27 - Rebuilt previous plugin ([BlogStats PCC](http://perishablepress.com/blogstats-pcc-plugin/)) using current/native WP functionality.
 
 == Frequently Asked Questions ==
 
