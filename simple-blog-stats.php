@@ -5,7 +5,7 @@ Plugin URI: http://perishablepress.com/simple-blog-stats/
 Description: Provides a bunch of shortcodes and template tags to display a variety of statistics about your site.
 Author: Jeff Starr
 Author URI: http://monzilla.biz/
-Version: 20121029
+Version: 20130104
 License: GPL v2
 Usage: Visit the plugin's settings page for shortcodes, template tags, and more information.
 Tags: stats, statistics, posts, categories, tags
@@ -17,7 +17,7 @@ $sbs_plugin  = __('Simple Blog Stats');
 $sbs_options = get_option('sbs_options');
 $sbs_path    = plugin_basename(__FILE__); // 'simple-blog-stats/simple-blog-stats.php';
 $sbs_homeurl = 'http://perishablepress.com/simple-blog-stats/';
-$sbs_version = '20121029';
+$sbs_version = '20130104';
 
 // require minimum version of WordPress
 add_action('admin_init', 'sbs_require_wp_version');
@@ -372,7 +372,7 @@ function sbs_render_form() {
 
 		#setting-error-settings_updated { margin: 10px 0; }
 		#setting-error-settings_updated p { margin: 5px; }
-		.button-primary { margin: 0 0 15px 15px; }
+		#mm-plugin-options .button-primary { margin: 0 0 15px 15px; }
 
 		.mm-table-wrap { margin: 15px; }
 		.mm-table-wrap td { padding: 5px 10px; vertical-align: middle; }

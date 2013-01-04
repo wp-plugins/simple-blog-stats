@@ -9,9 +9,9 @@ Author: Jeff Starr
 Contributors: specialk
 Donate link: http://digwp.com/book/
 Requires at least: 3.4
-Tested up to: 3.4.2
-Stable tag: 20121029
-Version: 20121029
+Tested up to: 3.5
+Stable tag: 20130104
+Version: 20130104
 License: GPLv2 or later
 
 Simple Blog Stats provides a wealth of shortcodes and tags to display a variety of statistics about your site.
@@ -64,7 +64,8 @@ Visit the [SBS Homepage](http://perishablepress.com/simple-blog-stats/) for scre
 
 == Changelog ==
 
-* 2012/10/29 - Initial release.
+* 2013/01/04 - Added margins to submit buttons.
+* 2012/10/29 - Initial release of new plugin.
 * 2012/10/28 - Fine-tuned, tested, tested, etc.
 * 2012/10/27 - Rebuilt previous plugin ([BlogStats PCC](http://perishablepress.com/blogstats-pcc-plugin/)) using current/native WP functionality.
 
