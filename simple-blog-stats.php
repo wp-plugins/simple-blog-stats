@@ -5,7 +5,8 @@ Plugin URI: http://perishablepress.com/simple-blog-stats/
 Description: Provides a bunch of shortcodes and template tags to display a variety of statistics about your site.
 Author: Jeff Starr
 Author URI: http://monzilla.biz/
-Version: 20130104
+Donate link: http://m0n.co/donate
+Version: 20130713
 License: GPL v2
 Usage: Visit the plugin's settings page for shortcodes, template tags, and more information.
 Tags: stats, statistics, posts, categories, tags
@@ -13,11 +14,11 @@ Tags: stats, statistics, posts, categories, tags
 
 // NO EDITING REQUIRED - PLEASE SET PREFERENCES IN THE WP ADMIN!
 
-$sbs_plugin  = __('Simple Blog Stats');
+$sbs_plugin  = __('Simple Blog Stats', 'sbs');
 $sbs_options = get_option('sbs_options');
 $sbs_path    = plugin_basename(__FILE__); // 'simple-blog-stats/simple-blog-stats.php';
 $sbs_homeurl = 'http://perishablepress.com/simple-blog-stats/';
-$sbs_version = '20130104';
+$sbs_version = '20130713';
 
 // require minimum version of WordPress
 add_action('admin_init', 'sbs_require_wp_version');
@@ -26,8 +27,8 @@ function sbs_require_wp_version() {
 	if (version_compare($wp_version, '3.4', '<')) {
 		if (is_plugin_active($sbs_path)) {
 			deactivate_plugins($sbs_path);
-			$msg =  '<strong>' . $sbs_plugin . '</strong> ' . __('requires WordPress 3.4 or higher, and has been deactivated!') . '<br />';
-			$msg .= __('Please return to the ') . '<a href="' . admin_url() . '">' . __('WordPress Admin area') . '</a> ' . __('to upgrade WordPress and try again.');
+			$msg =  '<strong>' . $sbs_plugin . '</strong> ' . __('requires WordPress 3.4 or higher, and has been deactivated!', 'sbs') . '<br />';
+			$msg .= __('Please return to the', 'sbs') . ' <a href="' . admin_url() . '">' . __('WordPress Admin area', 'sbs') . '</a> ' . __('to upgrade WordPress and try again.', 'sbs');
 			wp_die($msg);
 		}
 	}
@@ -215,15 +216,15 @@ function sbs_blog_stats() {
 	$number_tags = wp_count_terms('post_tag');
 	
 	$sbs_stats  = '<ul id="sbs-stats">';
-	$sbs_stats .= '<li><span>' . $number_posts . '</span> ' . __('posts') . '</li>';
-	$sbs_stats .= '<li><span>' . $number_pages . '</span> ' . __('pages') . '</li>';
-	$sbs_stats .= '<li><span>' . $number_drafts . '</span> ' . __('drafts') . '</li>';
-	$sbs_stats .= '<li><span>' . $number_comments . '</span> ' . __('total comments') . '</li>';
-	$sbs_stats .= '<li><span>' . $number_moderated . '</span> ' . __('comments in queue') . '</li>';
-	$sbs_stats .= '<li><span>' . $number_approved . '</span> ' . __('comments approved') . '</li>';
-	$sbs_stats .= '<li><span>' . $number_users . '</span> ' . __('registered users') . '</li>';
-	$sbs_stats .= '<li><span>' . $number_cats . '</span> ' . __('categories') . '</li>';
-	$sbs_stats .= '<li><span>' . $number_tags . '</span> ' . __('tags') . '</li>';
+	$sbs_stats .= '<li><span>' . $number_posts . '</span> ' . __('posts', 'sbs') . '</li>';
+	$sbs_stats .= '<li><span>' . $number_pages . '</span> ' . __('pages', 'sbs') . '</li>';
+	$sbs_stats .= '<li><span>' . $number_drafts . '</span> ' . __('drafts', 'sbs') . '</li>';
+	$sbs_stats .= '<li><span>' . $number_comments . '</span> ' . __('total comments', 'sbs') . '</li>';
+	$sbs_stats .= '<li><span>' . $number_moderated . '</span> ' . __('comments in queue', 'sbs') . '</li>';
+	$sbs_stats .= '<li><span>' . $number_approved . '</span> ' . __('comments approved', 'sbs') . '</li>';
+	$sbs_stats .= '<li><span>' . $number_users . '</span> ' . __('registered users', 'sbs') . '</li>';
+	$sbs_stats .= '<li><span>' . $number_cats . '</span> ' . __('categories', 'sbs') . '</li>';
+	$sbs_stats .= '<li><span>' . $number_tags . '</span> ' . __('tags', 'sbs') . '</li>';
 	$sbs_stats .= '</ul>';
 
 	return $sbs_options['blog_stats_before'] . $sbs_stats . $sbs_options['blog_stats_after'];
@@ -234,7 +235,7 @@ add_filter ('plugin_action_links', 'sbs_plugin_action_links', 10, 2);
 function sbs_plugin_action_links($links, $file) {
 	global $sbs_path, $sbs_path;
 	if ($file == $sbs_path) {
-		$sbs_links = '<a href="' . get_admin_url() . 'options-general.php?page=' . $sbs_path . '">' . __('Settings') .'</a>';
+		$sbs_links = '<a href="' . get_admin_url() . 'options-general.php?page=' . $sbs_path . '">' . __('Settings', 'sbs') .'</a>';
 		array_unshift($links, $sbs_links);
 	}
 	return $links;
@@ -387,8 +388,8 @@ function sbs_render_form() {
 	<div id="mm-plugin-options" class="wrap">
 		<?php screen_icon(); ?>
 
-		<h2><?php _e('Simple Blog Stats'); ?> <small><?php echo 'v' . $sbs_version; ?></small></h2>
-		<div id="mm-panel-toggle"><a href="<?php get_admin_url() . 'options-general.php?page=' . $sbs_path; ?>"><?php _e('Toggle all panels'); ?></a></div>
+		<h2><?php _e('Simple Blog Stats', 'sbs'); ?> <small><?php echo 'v' . $sbs_version; ?></small></h2>
+		<div id="mm-panel-toggle"><a href="<?php get_admin_url() . 'options-general.php?page=' . $sbs_path; ?>"><?php _e('Toggle all panels', 'sbs'); ?></a></div>
 
 		<form method="post" action="options.php">
 			<?php $sbs_options = get_option('sbs_options'); settings_fields('sbs_plugin_options'); ?>
@@ -396,33 +397,34 @@ function sbs_render_form() {
 			<div class="metabox-holder">
 				<div class="meta-box-sortables ui-sortable">
 					<div id="mm-panel-overview" class="postbox">
-						<h3><?php _e('Overview'); ?></h3>
-						<div class="toggle default-hidden">
+						<h3><?php _e('Overview', 'sbs'); ?></h3>
+						<div class="toggle">
 							<div class="mm-panel-overview">
 								<p>
-									<strong><?php echo $sbs_plugin; ?></strong> <?php _e('(SBS) provides a bunch of shortcodes and template tags to display a variety of statistics about your site.'); ?>
-									<?php _e('Use the shortcodes to display various stats on a post or page. Use the template tags to display stats anywhere in your theme template.'); ?>
+									<strong><?php echo $sbs_plugin; ?></strong> <?php _e('(SBS) provides a bunch of shortcodes and template tags to display a variety of statistics about your site.', 'sbs'); ?>
+									<?php _e('Use the shortcodes to display various stats on a post or page. Use the template tags to display stats anywhere in your theme template.', 'sbs'); ?>
 								</p>
 								<ul>
-									<li><?php _e('For shortcodes, visit the'); ?> <a id="mm-panel-primary-link" href="#mm-panel-primary"><?php _e('SBS Shortcodes'); ?></a>.</li>
-									<li><?php _e('For template tags, visit'); ?> <a id="mm-panel-secondary-link" href="#mm-panel-secondary"><?php _e('SBS Template Tags'); ?></a>.</li>
-									<li><?php _e('For more information check the <code>readme.txt</code> and'); ?> <a href="<?php echo $sbs_homeurl; ?>"><?php _e('SBS Homepage'); ?></a>.</li>
+									<li><?php _e('For shortcodes, visit the', 'sbs'); ?> <a id="mm-panel-primary-link" href="#mm-panel-primary"><?php _e('SBS Shortcodes', 'sbs'); ?></a>.</li>
+									<li><?php _e('For template tags, visit', 'sbs'); ?> <a id="mm-panel-secondary-link" href="#mm-panel-secondary"><?php _e('SBS Template Tags', 'sbs'); ?></a>.</li>
+									<li><?php _e('For more information check the', 'sbs'); ?> <a href="<?php echo plugins_url(); ?>/simple-blog-stats/readme.txt">readme.txt</a> 
+									<?php _e('and', 'sbs'); ?> <a href="<?php echo $sbs_homeurl; ?>"><?php _e('SBS Homepage', 'sbs'); ?></a>.</li>
 								</ul>
 							</div>
 						</div>
 					</div>
 					<div id="mm-panel-primary" class="postbox">
-						<h3><?php _e('SBS Shortcodes'); ?></h3>
+						<h3><?php _e('SBS Shortcodes', 'sbs'); ?></h3>
 						<div class="toggle<?php if (!isset($_GET["settings-updated"])) { echo ' default-hidden'; } ?>">
-							<p><?php _e('Here you&rsquo;ll find your shortcodes along with options to customize the corresponding text and/or markup. Leave the before/after fields blank to disable.'); ?></p>
+							<p><?php _e('Here you&rsquo;ll find your shortcodes along with options to customize the corresponding text and/or markup. Leave the before/after fields blank to disable.', 'sbs'); ?></p>
 							<div class="mm-table-wrap">
 								<table class="widefat">
 									<thead>
 										<tr>
-											<th><?php _e('Display before shortcode'); ?></th>
-											<th><?php _e('Shortcode / Options'); ?></th>
-											<th><?php _e('Output'); ?></th>
-											<th><?php _e('Display after shortcode'); ?></th>
+											<th><?php _e('Display before shortcode', 'sbs'); ?></th>
+											<th><?php _e('Shortcode / Options', 'sbs'); ?></th>
+											<th><?php _e('Output', 'sbs'); ?></th>
+											<th><?php _e('Display after shortcode', 'sbs'); ?></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -434,7 +436,7 @@ function sbs_render_form() {
 											</td>
 											<td>
 												<code>[sbs_posts]</code>
-												<div class="mm-item-caption"><?php _e('number of posts'); ?></div>
+												<div class="mm-item-caption"><?php _e('number of posts', 'sbs'); ?></div>
 											</td>
 											<td><?php echo do_shortcode('[sbs_posts]'); ?></td>
 											<td>
@@ -451,7 +453,7 @@ function sbs_render_form() {
 											</td>
 											<td>
 												<code>[sbs_pages]</code>
-												<div class="mm-item-caption"><?php _e('number of pages'); ?></div>
+												<div class="mm-item-caption"><?php _e('number of pages', 'sbs'); ?></div>
 											</td>
 											<td><?php echo do_shortcode('[sbs_pages]'); ?></td>
 											<td>
@@ -468,7 +470,7 @@ function sbs_render_form() {
 											</td>
 											<td>
 												<code>[sbs_drafts]</code>
-												<div class="mm-item-caption"><?php _e('number of drafts'); ?></div>
+												<div class="mm-item-caption"><?php _e('number of drafts', 'sbs'); ?></div>
 											</td>
 											<td><?php echo do_shortcode('[sbs_drafts]'); ?></td>
 											<td>
@@ -485,7 +487,7 @@ function sbs_render_form() {
 											</td>
 											<td>
 												<code>[sbs_comments]</code>
-												<div class="mm-item-caption"><?php _e('number of comments'); ?></div>
+												<div class="mm-item-caption"><?php _e('number of comments', 'sbs'); ?></div>
 											</td>
 											<td><?php echo do_shortcode('[sbs_comments]'); ?></td>
 											<td>
@@ -502,7 +504,7 @@ function sbs_render_form() {
 											</td>
 											<td>
 												<code>[sbs_moderated]</code>
-												<div class="mm-item-caption"><?php _e('moderated comments'); ?></div>
+												<div class="mm-item-caption"><?php _e('moderated comments', 'sbs'); ?></div>
 											</td>
 											<td><?php echo do_shortcode('[sbs_moderated]'); ?></td>
 											<td>
@@ -519,7 +521,7 @@ function sbs_render_form() {
 											</td>
 											<td>
 												<code>[sbs_approved]</code>
-												<div class="mm-item-caption"><?php _e('approved comments'); ?></div>
+												<div class="mm-item-caption"><?php _e('approved comments', 'sbs'); ?></div>
 											</td>
 											<td><?php echo do_shortcode('[sbs_approved]'); ?></td>
 											<td>
@@ -536,7 +538,7 @@ function sbs_render_form() {
 											</td>
 											<td>
 												<code>[sbs_users]</code>
-												<div class="mm-item-caption"><?php _e('number of users'); ?></div>
+												<div class="mm-item-caption"><?php _e('number of users', 'sbs'); ?></div>
 											</td>
 											<td><?php echo do_shortcode('[sbs_users]'); ?></td>
 											<td>
@@ -553,7 +555,7 @@ function sbs_render_form() {
 											</td>
 											<td>
 												<code>[sbs_cats]</code>
-												<div class="mm-item-caption"><?php _e('number of categories'); ?></div>
+												<div class="mm-item-caption"><?php _e('number of categories', 'sbs'); ?></div>
 											</td>
 											<td><?php echo do_shortcode('[sbs_cats]'); ?></td>
 											<td>
@@ -570,7 +572,7 @@ function sbs_render_form() {
 											</td>
 											<td>
 												<code>[sbs_tags]</code>
-												<div class="mm-item-caption"><?php _e('number of tags'); ?></div>
+												<div class="mm-item-caption"><?php _e('number of tags', 'sbs'); ?></div>
 											</td>
 											<td><?php echo do_shortcode('[sbs_tags]'); ?></td>
 											<td>
@@ -587,7 +589,7 @@ function sbs_render_form() {
 											</td>
 											<td>
 												<code>[sbs_updated]</code>
-												<div class="mm-item-caption"><?php _e('site last updated'); ?></div>
+												<div class="mm-item-caption"><?php _e('site last updated', 'sbs'); ?></div>
 											</td>
 											<td><?php echo do_shortcode('[sbs_updated]'); ?></td>
 											<td>
@@ -604,13 +606,13 @@ function sbs_render_form() {
 											</td>
 											<td>
 												<code>[sbs_latest_posts]</code>
-												<div class="mm-item-caption"><?php _e('displays recent posts'); ?></div>
+												<div class="mm-item-caption"><?php _e('displays recent posts', 'sbs'); ?></div>
 												<div class="mm-number-option">
-													<label class="description" for="sbs_options[number_of_posts]"><?php _e('Number of posts:'); ?></label> 
+													<label class="description" for="sbs_options[number_of_posts]"><?php _e('Number of posts:', 'sbs'); ?></label> 
 													<input type="text" size="2" maxlength="10" name="sbs_options[number_of_posts]" value="<?php echo $sbs_options['number_of_posts']; ?>" />
 												</div>
 												<div class="mm-number-option">
-													<label class="description" for="sbs_options[post_length]"><?php _e('Length of posts:'); ?></label> 
+													<label class="description" for="sbs_options[post_length]"><?php _e('Length of posts:', 'sbs'); ?></label> 
 													<input type="text" size="2" maxlength="10" name="sbs_options[post_length]" value="<?php echo $sbs_options['post_length']; ?>" />
 												</div>
 											</td>
@@ -629,13 +631,13 @@ function sbs_render_form() {
 											</td>
 											<td>
 												<code>[sbs_latest_comments]</code>
-												<div class="mm-item-caption"><?php _e('displays recent comments'); ?></div>
+												<div class="mm-item-caption"><?php _e('displays recent comments', 'sbs'); ?></div>
 												<div class="mm-number-option">
-													<label class="description" for="sbs_options[number_of_comments]"><?php _e('Number of comments:'); ?></label> 
+													<label class="description" for="sbs_options[number_of_comments]"><?php _e('Number of comments:', 'sbs'); ?></label> 
 													<input type="text" size="2" maxlength="10" name="sbs_options[number_of_comments]" value="<?php echo $sbs_options['number_of_comments']; ?>" />
 												</div>
 												<div class="mm-number-option">
-													<label class="description" for="sbs_options[comment_length]"><?php _e('Length of comments:'); ?></label> 
+													<label class="description" for="sbs_options[comment_length]"><?php _e('Length of comments:', 'sbs'); ?></label> 
 													<input type="text" size="2" maxlength="10" name="sbs_options[comment_length]" value="<?php echo $sbs_options['comment_length']; ?>" />
 												</div>
 											</td>
@@ -654,7 +656,7 @@ function sbs_render_form() {
 											</td>
 											<td>
 												<code>[sbs_blog_stats]</code>
-												<div class="mm-item-caption"><?php _e('displays all blog stats'); ?></div>
+												<div class="mm-item-caption"><?php _e('displays all blog stats', 'sbs'); ?></div>
 											</td>
 											<td><?php echo do_shortcode('[sbs_blog_stats]'); ?></td>
 											<td>
@@ -666,13 +668,13 @@ function sbs_render_form() {
 									</tbody>
 								</table>
 							</div>
-							<input type="submit" class="button-primary" value="<?php _e('Save Settings'); ?>" />
+							<input type="submit" class="button-primary" value="<?php _e('Save Settings', 'sbs'); ?>" />
 						</div>
 					</div>
 					<div id="mm-panel-secondary" class="postbox">
-						<h3><?php _e('SBS Template Tags'); ?></h3>
+						<h3><?php _e('SBS Template Tags', 'sbs'); ?></h3>
 						<div class="toggle<?php if (!isset($_GET["settings-updated"])) { echo ' default-hidden'; } ?>">
-							<p><?php _e('Here you&rsquo;ll find code to display your blog stats anywhere in your theme template. These tags are based on the shortcodes, so check out the Shortcodes panel to customize output and for more information.'); ?></p>
+							<p><?php _e('Here you&rsquo;ll find code to display your blog stats anywhere in your theme template. These tags are based on the shortcodes, so check out the Shortcodes panel to customize output and for more information.', 'sbs'); ?></p>
 							<ul>
 								<li><code>&lt;?php echo do_shortcode('[sbs_posts]'); ?&gt;</code></li>
 								<li><code>&lt;?php echo do_shortcode('[sbs_pages]'); ?&gt;</code></li>
@@ -691,23 +693,23 @@ function sbs_render_form() {
 						</div>
 					</div>
 					<div id="mm-restore-settings" class="postbox">
-						<h3><?php _e('Restore Default Options'); ?></h3>
+						<h3><?php _e('Restore Default Options', 'sbs'); ?></h3>
 						<div class="toggle<?php if (!isset($_GET["settings-updated"])) { echo ' default-hidden'; } ?>">
 							<p>
 								<input name="sbs_options[default_options]" type="checkbox" value="1" id="sbs_restore_defaults" <?php if (isset($sbs_options['default_options'])) { checked('1', $sbs_options['default_options']); } ?> /> 
-								<label class="description" for="sbs_options[default_options]"><?php _e('Restore default options upon plugin deactivation/reactivation.'); ?></label>
+								<label class="description" for="sbs_options[default_options]"><?php _e('Restore default options upon plugin deactivation/reactivation.', 'sbs'); ?></label>
 							</p>
 							<p>
 								<small>
-									<?php _e('<strong>Tip:</strong> leave this option unchecked to remember your settings. Or, to go ahead and restore all default options, check the box, save your settings, and then deactivate/reactivate the plugin.'); ?>
+									<?php _e('<strong>Tip:</strong> leave this option unchecked to remember your settings. Or, to go ahead and restore all default options, check the box, save your settings, and then deactivate/reactivate the plugin.', 'sbs'); ?>
 								</small>
 							</p>
-							<input type="submit" class="button-primary" value="<?php _e('Save Settings'); ?>" />
+							<input type="submit" class="button-primary" value="<?php _e('Save Settings', 'sbs'); ?>" />
 						</div>
 					</div>
 					<div id="mm-panel-current" class="postbox">
-						<h3><?php _e('Updates &amp; Info'); ?></h3>
-						<div class="toggle default-hidden">
+						<h3><?php _e('Updates &amp; Info', 'sbs'); ?></h3>
+						<div class="toggle">
 							<div id="mm-iframe-wrap">
 								<iframe src="http://perishablepress.com/current/index-sbs.html"></iframe>
 							</div>
@@ -746,7 +748,7 @@ function sbs_render_form() {
 			// prevent accidents
 			if(!jQuery("#sbs_restore_defaults").is(":checked")){
 				jQuery('#sbs_restore_defaults').click(function(event){
-					var r = confirm("<?php _e('Are you sure you want to restore all default options? (this action cannot be undone)'); ?>");
+					var r = confirm("<?php _e('Are you sure you want to restore all default options? (this action cannot be undone)', 'sbs'); ?>");
 					if (r == true){  
 						jQuery("#sbs_restore_defaults").attr('checked', true);
 					} else {

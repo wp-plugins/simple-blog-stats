@@ -7,11 +7,11 @@ Tags: stats, statistics, posts, pages, categories, tags, categories, users, rece
 Author URI: http://monzilla.biz/
 Author: Jeff Starr
 Contributors: specialk
-Donate link: http://digwp.com/book/
+Donate link: http://m0n.co/donate
 Requires at least: 3.4
 Tested up to: 3.5
-Stable tag: 20130104
-Version: 20130104
+Version: 20130713
+Stable tag: trunk
 License: GPLv2 or later
 
 Simple Blog Stats provides a wealth of shortcodes and tags to display a variety of statistics about your site.
@@ -64,10 +64,27 @@ Visit the [SBS Homepage](http://perishablepress.com/simple-blog-stats/) for scre
 
 == Changelog ==
 
-* 2013/01/04 - Added margins to submit buttons.
-* 2012/10/29 - Initial release of new plugin.
-* 2012/10/28 - Fine-tuned, tested, tested, etc.
-* 2012/10/27 - Rebuilt previous plugin ([BlogStats PCC](http://perishablepress.com/blogstats-pcc-plugin/)) using current/native WP functionality.
+**20130713**
+
+* General code check n clean
+* Improved localization support
+* Overview and Updates admin panels toggled open by default
+
+**20130104**
+
+* Added margins to submit buttons.
+
+**20121029** 
+
+* Initial release of new plugin.
+
+**20121028**
+
+* Fine-tuned, tested, tested, etc.
+
+**20121027**
+
+* Rebuilt previous plugin ([BlogStats PCC](http://perishablepress.com/blogstats-pcc-plugin/)) using current/native WP functionality.
 
 == Frequently Asked Questions ==
 
@@ -79,6 +96,6 @@ To ask a question, visit the [SBS homepage](http://perishablepress.com/simple-bl
 
 == Donations ==
 
-I created this plugin with love for the WP community. To show support, consider purchasing my new book, [.htaccess made easy](http://htaccessbook.com/), or my WordPress book, [Digging into WordPress](http://digwp.com/).
+I created this plugin with love for the WP community. To show support, consider purchasing one of my books: [The Tao of WordPress](http://wp-tao.com/), [Digging into WordPress](http://digwp.com/), or [.htaccess made easy](http://htaccessbook.com/).
 
 Links, tweets and likes also appreciated. Thanks! :)
