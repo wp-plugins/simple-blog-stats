@@ -48,7 +48,7 @@ Bonus features:
 * Display recent posts (configurable)
 * Display recent comments (configurable)
 * Display all blog stats in a nice list
-* Eat a bowl of ice cream :)
+* Enjoy a bowl of ice cream :)
 
 == Installation ==
 
