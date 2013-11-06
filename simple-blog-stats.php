@@ -6,7 +6,7 @@ Description: Provides a bunch of shortcodes and template tags to display a varie
 Author: Jeff Starr
 Author URI: http://monzilla.biz/
 Donate link: http://m0n.co/donate
-Version: 20130713
+Version: 20131106
 License: GPL v2
 Usage: Visit the plugin's settings page for shortcodes, template tags, and more information.
 Tags: stats, statistics, posts, categories, tags
@@ -14,11 +14,19 @@ Tags: stats, statistics, posts, categories, tags
 
 // NO EDITING REQUIRED - PLEASE SET PREFERENCES IN THE WP ADMIN!
 
+if (!defined('ABSPATH')) die();
+
+// i18n
+function sbs_i18n_init() {
+	load_plugin_textdomain('sbs', false, dirname(plugin_basename(__FILE__)) . '/languages');
+}
+add_action('plugins_loaded', 'sbs_i18n_init');
+
 $sbs_plugin  = __('Simple Blog Stats', 'sbs');
 $sbs_options = get_option('sbs_options');
 $sbs_path    = plugin_basename(__FILE__); // 'simple-blog-stats/simple-blog-stats.php';
 $sbs_homeurl = 'http://perishablepress.com/simple-blog-stats/';
-$sbs_version = '20130713';
+$sbs_version = '20131106';
 
 // require minimum version of WordPress
 add_action('admin_init', 'sbs_require_wp_version');
@@ -241,6 +249,16 @@ function sbs_plugin_action_links($links, $file) {
 	return $links;
 }
 
+// rate plugin link
+function add_sbs_links($links, $file) {
+	if ($file == plugin_basename(__FILE__)) {
+		$rate_url = 'http://wordpress.org/support/view/plugin-reviews/' . basename(dirname(__FILE__)) . '?rate=5#postform';
+		$links[] = '<a href="' . $rate_url . '" target="_blank" title="Click here to rate and review this plugin on WordPress.org">Rate this plugin</a>';
+	}
+	return $links;
+}
+add_filter('plugin_row_meta', 'add_sbs_links', 10, 2);
+
 // delete plugin settings
 function sbs_delete_plugin_options() {
 	delete_option('sbs_options');
@@ -409,6 +427,11 @@ function sbs_render_form() {
 									<li><?php _e('For template tags, visit', 'sbs'); ?> <a id="mm-panel-secondary-link" href="#mm-panel-secondary"><?php _e('SBS Template Tags', 'sbs'); ?></a>.</li>
 									<li><?php _e('For more information check the', 'sbs'); ?> <a href="<?php echo plugins_url(); ?>/simple-blog-stats/readme.txt">readme.txt</a> 
 									<?php _e('and', 'sbs'); ?> <a href="<?php echo $sbs_homeurl; ?>"><?php _e('SBS Homepage', 'sbs'); ?></a>.</li>
+									<li><?php _e('If you like this plugin, please', 'sbs'); ?> 
+										<a href="http://wordpress.org/support/view/plugin-reviews/<?php echo basename(dirname(__FILE__)); ?>?rate=5#postform" title="<?php _e('Click here to rate and review this plugin on WordPress.org', 'sbs'); ?>" target="_blank">
+											<?php _e('rate it at the Plugin Directory', 'sbs'); ?>&nbsp;&raquo;
+										</a>
+									</li>
 								</ul>
 							</div>
 						</div>
@@ -759,4 +782,5 @@ function sbs_render_form() {
 		});
 	</script>
 
-<?php } ?>
+<?php }
+

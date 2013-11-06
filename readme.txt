@@ -9,8 +9,8 @@ Author: Jeff Starr
 Contributors: specialk
 Donate link: http://m0n.co/donate
 Requires at least: 3.4
-Tested up to: 3.5
-Version: 20130713
+Tested up to: 3.7
+Version: 20131106
 Stable tag: trunk
 License: GPLv2 or later
 
@@ -48,7 +48,7 @@ Bonus features:
 * Display recent posts (configurable)
 * Display recent comments (configurable)
 * Display all blog stats in a nice list
-* Enjoy a bowl of ice cream :)
+* Eat a bowl of ice cream :)
 
 == Installation ==
 
@@ -63,6 +63,16 @@ To upgrade SBS, remove old version and replace with new version. Nothing else ne
 Visit the [SBS Homepage](http://perishablepress.com/simple-blog-stats/) for screenshots and more information.
 
 == Changelog ==
+
+**20131106**
+
+* Removed closing `?>` from simple-blog-stats.php
+* General code cleanup and maintenance
+* Tested on latest version of WordPress 3.7
+* Added "rate this plugin" links
+* Added uninstall.php file
+* Added i18n support
+* Added line to prevent direct loading of script
 
 **20130713**
 
