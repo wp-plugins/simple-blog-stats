@@ -6,7 +6,7 @@ Description: Provides a bunch of shortcodes and template tags to display a varie
 Author: Jeff Starr
 Author URI: http://monzilla.biz/
 Donate link: http://m0n.co/donate
-Version: 20131106
+Version: 20140123
 License: GPL v2
 Usage: Visit the plugin's settings page for shortcodes, template tags, and more information.
 Tags: stats, statistics, posts, categories, tags
@@ -18,7 +18,7 @@ if (!defined('ABSPATH')) die();
 
 // i18n
 function sbs_i18n_init() {
-	load_plugin_textdomain('sbs', false, dirname(plugin_basename(__FILE__)) . '/languages');
+	load_plugin_textdomain('sbs', false, dirname(plugin_basename(__FILE__)) . '/languages/');
 }
 add_action('plugins_loaded', 'sbs_i18n_init');
 
@@ -26,7 +26,7 @@ $sbs_plugin  = __('Simple Blog Stats', 'sbs');
 $sbs_options = get_option('sbs_options');
 $sbs_path    = plugin_basename(__FILE__); // 'simple-blog-stats/simple-blog-stats.php';
 $sbs_homeurl = 'http://perishablepress.com/simple-blog-stats/';
-$sbs_version = '20131106';
+$sbs_version = '20140123';
 
 // require minimum version of WordPress
 add_action('admin_init', 'sbs_require_wp_version');
