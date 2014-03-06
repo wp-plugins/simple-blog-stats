@@ -6,7 +6,7 @@ Description: Provides a bunch of shortcodes and template tags to display a varie
 Author: Jeff Starr
 Author URI: http://monzilla.biz/
 Donate link: http://m0n.co/donate
-Version: 20140123
+Version: 20140305
 License: GPL v2
 Usage: Visit the plugin's settings page for shortcodes, template tags, and more information.
 Tags: stats, statistics, posts, categories, tags
@@ -26,7 +26,7 @@ $sbs_plugin  = __('Simple Blog Stats', 'sbs');
 $sbs_options = get_option('sbs_options');
 $sbs_path    = plugin_basename(__FILE__); // 'simple-blog-stats/simple-blog-stats.php';
 $sbs_homeurl = 'http://perishablepress.com/simple-blog-stats/';
-$sbs_version = '20140123';
+$sbs_version = '20140305';
 
 // require minimum version of WordPress
 add_action('admin_init', 'sbs_require_wp_version');
@@ -176,7 +176,7 @@ function sbs_latest_comments() {
 
 		$line_breaks       = array("\r\n", "\n", "\r");
 		$comment_display   = str_replace($line_breaks, " ", $comment_excerpt);
-		$comment_display   = mysql_real_escape_string($comment_display);
+		$comment_display   = esc_attr($comment_display);
 
 		$comment_post_id   = $recent_comment->comment_post_ID;
 		$comment_permalink = get_permalink($comment_post_id);

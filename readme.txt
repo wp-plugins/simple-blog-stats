@@ -10,7 +10,7 @@ Contributors: specialk
 Donate link: http://m0n.co/donate
 Requires at least: 3.4
 Tested up to: 3.8
-Version: 20140123
+Version: 20140305
 Stable tag: trunk
 License: GPLv2 or later
 
@@ -63,6 +63,10 @@ To upgrade SBS, remove old version and replace with new version. Nothing else ne
 Visit the [SBS Homepage](http://perishablepress.com/simple-blog-stats/) for screenshots and more information.
 
 == Changelog ==
+
+**20140305**
+
+* Bugfix: replaced mysql_real_escape_string() with esc_attr(), resolves PHP error
 
 **20140123**
 
