@@ -6,7 +6,7 @@ Description: Provides a bunch of shortcodes and template tags to display a varie
 Author: Jeff Starr
 Author URI: http://monzilla.biz/
 Donate link: http://m0n.co/donate
-Version: 20140305
+Version: 20140925
 License: GPL v2
 Usage: Visit the plugin's settings page for shortcodes, template tags, and more information.
 Tags: stats, statistics, posts, categories, tags
@@ -16,30 +16,32 @@ Tags: stats, statistics, posts, categories, tags
 
 if (!defined('ABSPATH')) die();
 
+$sbs_plugin  = __('Simple Blog Stats', 'sbs');
+$sbs_options = get_option('sbs_options');
+$sbs_path    = plugin_basename(__FILE__); // 'simple-blog-stats/simple-blog-stats.php';
+$sbs_homeurl = 'http://perishablepress.com/simple-blog-stats/';
+$sbs_version = '20140925';
+
 // i18n
 function sbs_i18n_init() {
 	load_plugin_textdomain('sbs', false, dirname(plugin_basename(__FILE__)) . '/languages/');
 }
 add_action('plugins_loaded', 'sbs_i18n_init');
 
-$sbs_plugin  = __('Simple Blog Stats', 'sbs');
-$sbs_options = get_option('sbs_options');
-$sbs_path    = plugin_basename(__FILE__); // 'simple-blog-stats/simple-blog-stats.php';
-$sbs_homeurl = 'http://perishablepress.com/simple-blog-stats/';
-$sbs_version = '20140305';
-
 // require minimum version of WordPress
-add_action('admin_init', 'sbs_require_wp_version');
 function sbs_require_wp_version() {
 	global $wp_version, $sbs_path, $sbs_plugin;
-	if (version_compare($wp_version, '3.4', '<')) {
+	if (version_compare($wp_version, '3.7', '<')) {
 		if (is_plugin_active($sbs_path)) {
 			deactivate_plugins($sbs_path);
-			$msg =  '<strong>' . $sbs_plugin . '</strong> ' . __('requires WordPress 3.4 or higher, and has been deactivated!', 'sbs') . '<br />';
+			$msg =  '<strong>' . $sbs_plugin . '</strong> ' . __('requires WordPress 3.7 or higher, and has been deactivated!', 'sbs') . '<br />';
 			$msg .= __('Please return to the', 'sbs') . ' <a href="' . admin_url() . '">' . __('WordPress Admin area', 'sbs') . '</a> ' . __('to upgrade WordPress and try again.', 'sbs');
 			wp_die($msg);
 		}
 	}
+}
+if (isset($_GET['activate']) && $_GET['activate'] == 'true') {
+	add_action('admin_init', 'sbs_require_wp_version');
 }
 
 // number of posts

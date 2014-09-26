@@ -8,9 +8,9 @@ Author URI: http://monzilla.biz/
 Author: Jeff Starr
 Contributors: specialk
 Donate link: http://m0n.co/donate
-Requires at least: 3.4
-Tested up to: 3.8
-Version: 20140305
+Requires at least: 3.7
+Tested up to: 4.0
+Version: 20140925
 Stable tag: trunk
 License: GPLv2 or later
 
@@ -63,6 +63,12 @@ To upgrade SBS, remove old version and replace with new version. Nothing else ne
 Visit the [SBS Homepage](http://perishablepress.com/simple-blog-stats/) for screenshots and more information.
 
 == Changelog ==
+
+**20140925**
+
+* Tested on latest version of WP (4.0)
+* Increased min-version requirement to WP 3.7
+* Added conditional check for min-version function
 
 **20140305**
 
