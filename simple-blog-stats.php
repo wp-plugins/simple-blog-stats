@@ -3,38 +3,40 @@
 Plugin Name: Simple Blog Stats
 Plugin URI: http://perishablepress.com/simple-blog-stats/
 Description: Provides a bunch of shortcodes and template tags to display a variety of statistics about your site.
+Tags: stats, statistics, posts, pages, categories, tags, categories, users, recent posts, recent comments
 Author: Jeff Starr
 Author URI: http://monzilla.biz/
 Donate link: http://m0n.co/donate
-Version: 20140925
-License: GPL v2
-Usage: Visit the plugin's settings page for shortcodes, template tags, and more information.
-Tags: stats, statistics, posts, categories, tags
+Contributors: specialk
+Requires at least: 3.8
+Tested up to: 4.1
+Stable tag: trunk
+Version: 20150315
+Text Domain: sbs
+Domain Path: /languages/
+License: GPL v2 or later
 */
-
-// NO EDITING REQUIRED - PLEASE SET PREFERENCES IN THE WP ADMIN!
 
 if (!defined('ABSPATH')) die();
 
+$sbs_wp_vers = '3.8';
+$sbs_version = '20150315';
 $sbs_plugin  = __('Simple Blog Stats', 'sbs');
 $sbs_options = get_option('sbs_options');
 $sbs_path    = plugin_basename(__FILE__); // 'simple-blog-stats/simple-blog-stats.php';
 $sbs_homeurl = 'http://perishablepress.com/simple-blog-stats/';
-$sbs_version = '20140925';
 
-// i18n
 function sbs_i18n_init() {
 	load_plugin_textdomain('sbs', false, dirname(plugin_basename(__FILE__)) . '/languages/');
 }
 add_action('plugins_loaded', 'sbs_i18n_init');
 
-// require minimum version of WordPress
 function sbs_require_wp_version() {
-	global $wp_version, $sbs_path, $sbs_plugin;
-	if (version_compare($wp_version, '3.7', '<')) {
+	global $wp_version, $sbs_path, $sbs_plugin, $sbs_wp_vers;
+	if (version_compare($wp_version, $sbs_wp_vers, '<')) {
 		if (is_plugin_active($sbs_path)) {
 			deactivate_plugins($sbs_path);
-			$msg =  '<strong>' . $sbs_plugin . '</strong> ' . __('requires WordPress 3.7 or higher, and has been deactivated!', 'sbs') . '<br />';
+			$msg =  '<strong>' . $sbs_plugin . '</strong> ' . __('requires WordPress ', 'sbs') . $sbs_wp_vers . __(' or higher, and has been deactivated!', 'sbs') . '<br />';
 			$msg .= __('Please return to the', 'sbs') . ' <a href="' . admin_url() . '">' . __('WordPress Admin area', 'sbs') . '</a> ' . __('to upgrade WordPress and try again.', 'sbs');
 			wp_die($msg);
 		}
@@ -45,63 +47,62 @@ if (isset($_GET['activate']) && $_GET['activate'] == 'true') {
 }
 
 // number of posts
-add_shortcode('sbs_posts','sbs_posts');
 function sbs_posts() {
 	global $sbs_options;
 	$count_posts = wp_count_posts();
 	return $sbs_options['count_posts_before'] . $count_posts->publish . $sbs_options['count_posts_after'];
 }
+add_shortcode('sbs_posts','sbs_posts');
 
 // number of pages
-add_shortcode('sbs_pages','sbs_pages');
 function sbs_pages() {
 	global $sbs_options;
 	$count_pages = wp_count_posts('page');
 	return $sbs_options['count_pages_before'] . $count_pages->publish . $sbs_options['count_pages_after'];
 }
+add_shortcode('sbs_pages','sbs_pages');
 
 // number of drafts
-add_shortcode('sbs_drafts','sbs_drafts');
 function sbs_drafts() {
 	global $sbs_options;
 	$count_drafts = wp_count_posts();
 	return $sbs_options['count_drafts_before'] . $count_drafts->draft . $sbs_options['count_drafts_after'];
 }
+add_shortcode('sbs_drafts','sbs_drafts');
 
 // number of comments (total)
-add_shortcode('sbs_comments','sbs_comments');
 function sbs_comments() {
 	global $sbs_options;
 	$count_comments = wp_count_comments();
 	return $sbs_options['count_comments_before'] . $count_comments->total_comments . $sbs_options['count_comments_after'];
 }
+add_shortcode('sbs_comments','sbs_comments');
 
 // number of comments (moderated)
-add_shortcode('sbs_moderated','sbs_moderated');
 function sbs_moderated() {
 	global $sbs_options;
 	$count_moderated = wp_count_comments();
 	return $sbs_options['count_moderated_before'] . $count_moderated->moderated . $sbs_options['count_moderated_after'];
 }
+add_shortcode('sbs_moderated','sbs_moderated');
 
 // number of comments (approved)
-add_shortcode('sbs_approved','sbs_approved');
 function sbs_approved() {
 	global $sbs_options;
 	$count_approved = wp_count_comments();
 	return $sbs_options['count_approved_before'] . $count_approved->approved . $sbs_options['count_approved_after'];
 }
+add_shortcode('sbs_approved','sbs_approved');
 
 // number of users
-add_shortcode('sbs_users','sbs_users');
 function sbs_users() {
 	global $sbs_options;
 	$count_users = count_users();
 	return $sbs_options['count_users_before'] . $count_users['total_users'] . $sbs_options['count_users_after'];
 }
+add_shortcode('sbs_users','sbs_users');
 
 // number of categories
-add_shortcode('sbs_cats','sbs_cats');
 function sbs_cats() {
 	global $sbs_options;
 	$cats = wp_list_categories('title_li=&style=none&echo=0');
@@ -109,16 +110,16 @@ function sbs_cats() {
 	$cats_count = count($cats_parts) - 1;
 	return $sbs_options['count_cats_before'] . $cats_count . $sbs_options['count_cats_after'];
 }
+add_shortcode('sbs_cats','sbs_cats');
 
 // number of tags
-add_shortcode('sbs_tags','sbs_tags');
 function sbs_tags() {
 	global $sbs_options;
 	return $sbs_options['count_tags_before'] . wp_count_terms('post_tag') . $sbs_options['count_tags_after'];
 }
+add_shortcode('sbs_tags','sbs_tags');
 
 // site last updated
-add_shortcode('sbs_updated','sbs_updated');
 function sbs_updated($d = '') {
 	global $sbs_options;
 	$count_posts = wp_count_posts();
@@ -134,9 +135,9 @@ function sbs_updated($d = '') {
 		return $sbs_options['site_updated_before'] . 'awhile ago' . $sbs_options['site_updated_after'];
 	}
 }
+add_shortcode('sbs_updated','sbs_updated');
 
 // latest posts
-add_shortcode('sbs_latest_posts','sbs_latest_posts');
 function sbs_latest_posts($d = '') {
 	global $sbs_options;
 	$posts_number = $sbs_options['number_of_posts'];
@@ -158,9 +159,9 @@ function sbs_latest_posts($d = '') {
 		return $sbs_options['latest_posts_before'] . 'nothing new' . $sbs_options['latest_posts_after'];
 	}
 }
+add_shortcode('sbs_latest_posts','sbs_latest_posts');
 
 // latest comments
-add_shortcode('sbs_latest_comments','sbs_latest_comments');
 function sbs_latest_comments() {
 	global $sbs_options;
 	$comments_number = $sbs_options['number_of_comments'];
@@ -191,9 +192,9 @@ function sbs_latest_comments() {
 	$comments .= '</ul>';
 	return $sbs_options['latest_comments_before'] . $comments . $sbs_options['latest_comments_after'];	
 }
+add_shortcode('sbs_latest_comments','sbs_latest_comments');
 
 // display blog stats
-add_shortcode('sbs_blog_stats','sbs_blog_stats');
 function sbs_blog_stats() {
 	global $sbs_options;
 
@@ -239,9 +240,8 @@ function sbs_blog_stats() {
 
 	return $sbs_options['blog_stats_before'] . $sbs_stats . $sbs_options['blog_stats_after'];
 }
+add_shortcode('sbs_blog_stats','sbs_blog_stats');
 
-// display settings link on plugin page
-add_filter ('plugin_action_links', 'sbs_plugin_action_links', 10, 2);
 function sbs_plugin_action_links($links, $file) {
 	global $sbs_path, $sbs_path;
 	if ($file == $sbs_path) {
@@ -250,8 +250,8 @@ function sbs_plugin_action_links($links, $file) {
 	}
 	return $links;
 }
+add_filter ('plugin_action_links', 'sbs_plugin_action_links', 10, 2);
 
-// rate plugin link
 function add_sbs_links($links, $file) {
 	if ($file == plugin_basename(__FILE__)) {
 		$rate_url = 'http://wordpress.org/support/view/plugin-reviews/' . basename(dirname(__FILE__)) . '?rate=5#postform';
@@ -261,7 +261,6 @@ function add_sbs_links($links, $file) {
 }
 add_filter('plugin_row_meta', 'add_sbs_links', 10, 2);
 
-// delete plugin settings
 function sbs_delete_plugin_options() {
 	delete_option('sbs_options');
 }
@@ -269,8 +268,6 @@ if ($sbs_options['default_options'] == 1) {
 	register_uninstall_hook (__FILE__, 'sbs_delete_plugin_options');
 }
 
-// define default settings
-register_activation_hook (__FILE__, 'sbs_add_defaults');
 function sbs_add_defaults() {
 	$tmp = get_option('sbs_options');
 	if(($tmp['default_options'] == '1') || (!is_array($tmp))) {
@@ -310,14 +307,13 @@ function sbs_add_defaults() {
 		update_option('sbs_options', $arr);
 	}
 }
+register_activation_hook (__FILE__, 'sbs_add_defaults');
 
-// whitelist settings
-add_action ('admin_init', 'sbs_init');
 function sbs_init() {
 	register_setting('sbs_plugin_options', 'sbs_options', 'sbs_validate_options');
 }
+add_action ('admin_init', 'sbs_init');
 
-// sanitize and validate input
 function sbs_validate_options($input) {
 
 	if (!isset($input['default_options'])) $input['default_options'] = null;
@@ -370,13 +366,11 @@ function sbs_validate_options($input) {
 	return $input;
 }
 
-// add the options page
-add_action ('admin_menu', 'sbs_add_options_page');
 function sbs_add_options_page() {
 	add_options_page('Simple Blog Stats', 'Simple Blog Stats', 'manage_options', __FILE__, 'sbs_render_form');
 }
+add_action ('admin_menu', 'sbs_add_options_page');
 
-// create the options page
 function sbs_render_form() {
 	global $sbs_plugin, $sbs_options, $sbs_path, $sbs_homeurl, $sbs_version; ?>
 
@@ -406,8 +400,6 @@ function sbs_render_form() {
 	</style>
 
 	<div id="mm-plugin-options" class="wrap">
-		<?php screen_icon(); ?>
-
 		<h2><?php _e('Simple Blog Stats', 'sbs'); ?> <small><?php echo 'v' . $sbs_version; ?></small></h2>
 		<div id="mm-panel-toggle"><a href="<?php get_admin_url() . 'options-general.php?page=' . $sbs_path; ?>"><?php _e('Toggle all panels', 'sbs'); ?></a></div>
 
@@ -427,8 +419,10 @@ function sbs_render_form() {
 								<ul>
 									<li><?php _e('For shortcodes, visit the', 'sbs'); ?> <a id="mm-panel-primary-link" href="#mm-panel-primary"><?php _e('SBS Shortcodes', 'sbs'); ?></a>.</li>
 									<li><?php _e('For template tags, visit', 'sbs'); ?> <a id="mm-panel-secondary-link" href="#mm-panel-secondary"><?php _e('SBS Template Tags', 'sbs'); ?></a>.</li>
-									<li><?php _e('For more information check the', 'sbs'); ?> <a href="<?php echo plugins_url(); ?>/simple-blog-stats/readme.txt">readme.txt</a> 
-									<?php _e('and', 'sbs'); ?> <a href="<?php echo $sbs_homeurl; ?>"><?php _e('SBS Homepage', 'sbs'); ?></a>.</li>
+									<li>
+										<?php _e('For more information check the', 'sbs'); ?> <a target="_blank" href="<?php echo plugins_url('/ga-google-analytics/readme.txt', dirname(__FILE__)); ?>">readme.txt</a> 
+										<?php _e('and', 'sbs'); ?> <a target="_blank" href="<?php echo $sbs_homeurl; ?>"><?php _e('SBS Homepage', 'sbs'); ?></a>.
+									</li>
 									<li><?php _e('If you like this plugin, please', 'sbs'); ?> 
 										<a href="http://wordpress.org/support/view/plugin-reviews/<?php echo basename(dirname(__FILE__)); ?>?rate=5#postform" title="<?php _e('Click here to rate and review this plugin on WordPress.org', 'sbs'); ?>" target="_blank">
 											<?php _e('rate it at the Plugin Directory', 'sbs'); ?>&nbsp;&raquo;
@@ -785,4 +779,3 @@ function sbs_render_form() {
 	</script>
 
 <?php }
-

@@ -4,15 +4,17 @@ Plugin Name: Simple Blog Stats
 Plugin URI: http://perishablepress.com/simple-blog-stats/
 Description: Provides a bunch of shortcodes and template tags to display a variety of statistics about your site.
 Tags: stats, statistics, posts, pages, categories, tags, categories, users, recent posts, recent comments
-Author URI: http://monzilla.biz/
 Author: Jeff Starr
-Contributors: specialk
+Author URI: http://monzilla.biz/
 Donate link: http://m0n.co/donate
-Requires at least: 3.7
-Tested up to: 4.0
-Version: 20140925
+Contributors: specialk
+Requires at least: 3.8
+Tested up to: 4.1
 Stable tag: trunk
-License: GPLv2 or later
+Version: 20150315
+Text Domain: sbs
+Domain Path: /languages/
+License: GPL v2 or later
 
 Simple Blog Stats provides a wealth of shortcodes and tags to display a variety of statistics about your site.
 
@@ -63,6 +65,16 @@ To upgrade SBS, remove old version and replace with new version. Nothing else ne
 Visit the [SBS Homepage](http://perishablepress.com/simple-blog-stats/) for screenshots and more information.
 
 == Changelog ==
+
+**20150315**
+
+* Tested with latest version of WP (4.1)
+* Increased minimum version to WP 3.8
+* Removed deprecated screen_icon()
+* Streamline/fine-tune plugin code
+* Added $sbs_wp_vers for version check
+* Added Text Domain and Domain Path to file header
+* Added .pot translation template to /languages/
 
 **20140925**
 
@@ -121,6 +133,11 @@ To ask a question, visit the [SBS homepage](http://perishablepress.com/simple-bl
 
 == Donations ==
 
-I created this plugin with love for the WP community. To show support, consider purchasing one of my books: [The Tao of WordPress](http://wp-tao.com/), [Digging into WordPress](http://digwp.com/), or [.htaccess made easy](http://htaccessbook.com/).
+I created this plugin with love for the WP community. To show support, you can [make a donation](http://m0n.co/donate) or purchase one of my books: 
+
+* [The Tao of WordPress](http://wp-tao.com/)
+* [Digging into WordPress](http://digwp.com/)
+* [.htaccess made easy](http://htaccessbook.com/)
+* [WordPress Themes In Depth](http://wp-tao.com/wordpress-themes-book/)
 
 Links, tweets and likes also appreciated. Thanks! :)
