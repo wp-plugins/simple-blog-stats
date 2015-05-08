@@ -1,17 +1,17 @@
 === Simple Blog Stats ===
 
 Plugin Name: Simple Blog Stats
-Plugin URI: http://perishablepress.com/simple-blog-stats/
+Plugin URI: https://perishablepress.com/simple-blog-stats/
 Description: Provides a bunch of shortcodes and template tags to display a variety of statistics about your site.
 Tags: stats, statistics, posts, pages, categories, tags, categories, users, recent posts, recent comments
 Author: Jeff Starr
 Author URI: http://monzilla.biz/
 Donate link: http://m0n.co/donate
 Contributors: specialk
-Requires at least: 3.8
-Tested up to: 4.1
+Requires at least: 3.9
+Tested up to: 4.2
 Stable tag: trunk
-Version: 20150315
+Version: 20150507
 Text Domain: sbs
 Domain Path: /languages/
 License: GPL v2 or later
@@ -20,7 +20,7 @@ Simple Blog Stats provides a wealth of shortcodes and tags to display a variety 
 
 == Description ==
 
-[Simple Blog Stats (SBS)](http://perishablepress.com/simple-blog-stats/) provides shortcodes and tags to display site stats in posts, pages, and anywhere in your theme.
+[Simple Blog Stats (SBS)](https://perishablepress.com/simple-blog-stats/) provides shortcodes and tags to display site stats in posts, pages, and anywhere in your theme.
 
 Statistics include:
 
@@ -56,15 +56,22 @@ Bonus features:
 
 Typical WP install: upload, activate, done. Visit the SBS Settings Page for shortcodes, template tags, and more information. No configuration necessary.
 
+[More info on installing WP plugins](http://codex.wordpress.org/Managing_Plugins#Installing_Plugins)
+
 == Upgrade Notice ==
 
 To upgrade SBS, remove old version and replace with new version. Nothing else needs done.
 
 == Screenshots ==
 
-Visit the [SBS Homepage](http://perishablepress.com/simple-blog-stats/) for screenshots and more information.
+Visit the [SBS Homepage](https://perishablepress.com/simple-blog-stats/) for screenshots and more information.
 
 == Changelog ==
+
+**20150507**
+
+* Tested with WP 4.2 + 4.3 (alpha)
+* Changed a few "http" links to "https"
 
 **20150315**
 
@@ -121,7 +128,7 @@ Visit the [SBS Homepage](http://perishablepress.com/simple-blog-stats/) for scre
 
 **20121027**
 
-* Rebuilt previous plugin ([BlogStats PCC](http://perishablepress.com/blogstats-pcc-plugin/)) using current/native WP functionality.
+* Rebuilt previous plugin ([BlogStats PCC](https://perishablepress.com/blogstats-pcc-plugin/)) using current/native WP functionality.
 
 == Frequently Asked Questions ==
 
@@ -129,15 +136,15 @@ None yet :)
 
 = Got a question? =
 
-To ask a question, visit the [SBS homepage](http://perishablepress.com/simple-blog-stats/) or [contact me](http://perishablepress.com/contact/).
+To ask a question, visit the [SBS homepage](https://perishablepress.com/simple-blog-stats/) or [contact me](https://perishablepress.com/contact/).
 
 == Donations ==
 
 I created this plugin with love for the WP community. To show support, you can [make a donation](http://m0n.co/donate) or purchase one of my books: 
 
-* [The Tao of WordPress](http://wp-tao.com/)
-* [Digging into WordPress](http://digwp.com/)
-* [.htaccess made easy](http://htaccessbook.com/)
-* [WordPress Themes In Depth](http://wp-tao.com/wordpress-themes-book/)
+* [The Tao of WordPress](https://wp-tao.com/)
+* [Digging into WordPress](https://digwp.com/)
+* [.htaccess made easy](https://htaccessbook.com/)
+* [WordPress Themes In Depth](https://wp-tao.com/wordpress-themes-book/)
 
 Links, tweets and likes also appreciated. Thanks! :)

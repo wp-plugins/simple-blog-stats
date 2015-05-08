@@ -1,17 +1,17 @@
 <?php 
 /*
 Plugin Name: Simple Blog Stats
-Plugin URI: http://perishablepress.com/simple-blog-stats/
+Plugin URI: https://perishablepress.com/simple-blog-stats/
 Description: Provides a bunch of shortcodes and template tags to display a variety of statistics about your site.
 Tags: stats, statistics, posts, pages, categories, tags, categories, users, recent posts, recent comments
 Author: Jeff Starr
 Author URI: http://monzilla.biz/
 Donate link: http://m0n.co/donate
 Contributors: specialk
-Requires at least: 3.8
-Tested up to: 4.1
+Requires at least: 3.9
+Tested up to: 4.2
 Stable tag: trunk
-Version: 20150315
+Version: 20150507
 Text Domain: sbs
 Domain Path: /languages/
 License: GPL v2 or later
@@ -19,12 +19,12 @@ License: GPL v2 or later
 
 if (!defined('ABSPATH')) die();
 
-$sbs_wp_vers = '3.8';
-$sbs_version = '20150315';
+$sbs_wp_vers = '3.9';
+$sbs_version = '20150507';
 $sbs_plugin  = __('Simple Blog Stats', 'sbs');
 $sbs_options = get_option('sbs_options');
 $sbs_path    = plugin_basename(__FILE__); // 'simple-blog-stats/simple-blog-stats.php';
-$sbs_homeurl = 'http://perishablepress.com/simple-blog-stats/';
+$sbs_homeurl = 'https://perishablepress.com/simple-blog-stats/';
 
 function sbs_i18n_init() {
 	load_plugin_textdomain('sbs', false, dirname(plugin_basename(__FILE__)) . '/languages/');
@@ -730,7 +730,7 @@ function sbs_render_form() {
 						<h3><?php _e('Updates &amp; Info', 'sbs'); ?></h3>
 						<div class="toggle">
 							<div id="mm-iframe-wrap">
-								<iframe src="http://perishablepress.com/current/index-sbs.html"></iframe>
+								<iframe src="https://perishablepress.com/current/index-sbs.html"></iframe>
 							</div>
 						</div>
 					</div>
@@ -738,7 +738,7 @@ function sbs_render_form() {
 			</div>
 			<div id="mm-credit-info">
 				<a target="_blank" href="<?php echo $sbs_homeurl; ?>" title="<?php echo $sbs_plugin; ?> Homepage"><?php echo $sbs_plugin; ?></a> by 
-				<a target="_blank" href="http://twitter.com/perishable" title="Jeff Starr on Twitter">Jeff Starr</a> @ 
+				<a target="_blank" href="https://twitter.com/perishable" title="Jeff Starr on Twitter">Jeff Starr</a> @ 
 				<a target="_blank" href="http://monzilla.biz/" title="Obsessive Web Design &amp; Development">Monzilla Media</a>
 			</div>
 		</form>
