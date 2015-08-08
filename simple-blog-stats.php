@@ -8,10 +8,10 @@ Author: Jeff Starr
 Author URI: http://monzilla.biz/
 Donate link: http://m0n.co/donate
 Contributors: specialk
-Requires at least: 3.9
-Tested up to: 4.2
+Requires at least: 4.0
+Tested up to: 4.3
 Stable tag: trunk
-Version: 20150507
+Version: 20150808
 Text Domain: sbs
 Domain Path: /languages/
 License: GPL v2 or later
@@ -19,8 +19,8 @@ License: GPL v2 or later
 
 if (!defined('ABSPATH')) die();
 
-$sbs_wp_vers = '3.9';
-$sbs_version = '20150507';
+$sbs_wp_vers = '4.0';
+$sbs_version = '20150808';
 $sbs_plugin  = __('Simple Blog Stats', 'sbs');
 $sbs_options = get_option('sbs_options');
 $sbs_path    = plugin_basename(__FILE__); // 'simple-blog-stats/simple-blog-stats.php';
